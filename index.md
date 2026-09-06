@@ -4,8 +4,7 @@ title: AuroraGo
 
 # AuroraGo
 
-快樂下電腦圍棋虐菜唯美 App。在 iPhone 與 iPad 上跟 KataGo 下 19×19 的圍棋：從級位一階一階往上爬，每一盤下完都有
-復盤與解說。
+快樂下電腦圍棋虐菜唯美 App。在平板或手機跟電腦下 19 路圍棋：從 25 級一階一階往上爬，每一盤下完都有復盤與解說。
 
 ## 支援
 
@@ -18,7 +17,7 @@ title: AuroraGo
 
 # AuroraGo
 
-A Go app for playing against KataGo on iPhone and iPad: 19×19, a ladder of rungs climbed one at a time,
+Play 19×19 Go against the computer on a tablet or a phone: a ladder climbed one rung at a time from 25 kyu,
 and a review with explanations after every game.
 
 ## Support
