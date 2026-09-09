@@ -6,6 +6,8 @@ title: AuroraGo
 
 快樂下圍棋唯美 App。在平板或手機跟電腦下 19 路圍棋：從 25 級一階一階往上爬，每一盤下完都有復盤與解說。
 
+在 App Store 下載：<https://apps.apple.com/tw/app/aurorago/id6809070689>。
+
 ## 支援
 
 - **問題與建議**：寄 bolster_rotary_0x@icloud.com。
@@ -19,6 +21,8 @@ title: AuroraGo
 
 Play 19×19 Go against the computer on a tablet or a phone: a ladder climbed one rung at a time from 25 kyu,
 and a review with explanations after every game.
+
+On the App Store: <https://apps.apple.com/app/aurorago/id6809070689>.
 
 ## Support
 
