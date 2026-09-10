@@ -3,6 +3,10 @@ description: 快樂下圍棋唯美 App
 url: "https://chinchangyang.github.io"
 baseurl: "/aurorago-site"
 lang: zh-Hant
-theme: jekyll-theme-primer
 plugins:
   - jekyll-seo-tag
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: document

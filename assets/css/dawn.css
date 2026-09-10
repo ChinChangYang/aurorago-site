@@ -1,0 +1,215 @@
+/* 晝 — AuroraGo's day theme (ADR 0022), 石與木: the concrete under the lamp, stone slabs and stone
+   buttons, the text gold, everything in Lora + Noto Serif TC. The values are the app's
+   (Render/Theme.swift `Theme.day`, Render/Dawn/DawnChrome.swift). */
+
+:root {
+  --paper: #e3e0d9;
+  --ink: #2a2723;
+  --body: rgba(42, 39, 35, 0.83);
+  --sub: rgba(42, 39, 35, 0.69);
+  --faint: rgba(42, 39, 35, 0.55);
+  --line: rgba(42, 39, 35, 0.18);
+  --gold: #8f6820;
+  --gold-light: #b8892f;
+  color-scheme: light;
+}
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Lora', 'Noto Serif TC', Georgia, 'Songti TC', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--body);
+  background-color: var(--paper);
+  /* the concrete: the grain (soft-light), the lamp's glow at the upper left, the diagonal gradient about the paper */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.5' intercept='0.25'/%3E%3CfeFuncG type='linear' slope='0.5' intercept='0.25'/%3E%3CfeFuncB type='linear' slope='0.5' intercept='0.25'/%3E%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    radial-gradient(90% 55% at 15% 0%, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 62%),
+    linear-gradient(135deg, #e8e5de 0%, #e3e0d9 50%, #d8d5ce 100%);
+  background-blend-mode: soft-light, normal, normal;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+a { color: var(--gold); font-weight: 600; text-decoration: none; }
+a:hover { color: var(--gold-light); }
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 80px 72px;
+}
+
+/* The head: the icon and the name, as the app's rank and 連勝 line. */
+.masthead { display: flex; align-items: center; gap: 24px; }
+.masthead .icon { display: block; flex: none; }
+.masthead img {
+  display: block;
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  box-shadow: 3px 5px 9px rgba(30, 25, 15, 0.22), -2px -2px 5px rgba(255, 255, 255, 0.75);
+}
+.masthead .title { display: flex; flex-direction: column; gap: 10px; }
+.masthead .name {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.masthead .name:hover { color: var(--ink); }
+.masthead .tagline { font-size: 14px; letter-spacing: 0.08em; line-height: 1; color: var(--sub); }
+
+/* The support page: two columns, the slabs on one row (subgrid) so they align. */
+.blocks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  gap: 32px 34px;
+  margin-top: 44px;
+}
+.column { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 32px; }
+.blocks p { margin: 0; }
+.fold { display: none; }
+
+.store { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 24px; }
+.store .url { font-size: 12.5px; letter-spacing: 0.02em; line-height: 1.5; color: var(--faint); overflow-wrap: anywhere; }
+
+/* A stone button: raised while it can be pressed, pressed under the finger (ADR 0023). */
+.stone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding: 0 30px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #efece5 0%, #d3cfc6 100%);
+  box-shadow:
+    3px 5px 9px rgba(30, 25, 15, 0.22),
+    -2px -2px 5px rgba(255, 255, 255, 0.75),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.08);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+.stone:hover { color: var(--ink); }
+.stone:active {
+  background: linear-gradient(145deg, #d3cfc6 0%, #e0dcd4 100%);
+  box-shadow:
+    inset 3px 4px 7px rgba(30, 25, 15, 0.26),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.6);
+}
+
+/* A stone slab: the concrete a shade lighter on its shadow, the light edge at the top and the left. */
+.slab {
+  border-radius: 24px;
+  padding: 28px 30px 12px;
+  background: linear-gradient(170deg, #ebe8e1 0%, #d7d3cb 100%);
+  box-shadow:
+    10px 16px 34px rgba(30, 25, 15, 0.3),
+    2px 4px 8px rgba(0, 0, 0, 0.14),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.07);
+}
+.slab h2 {
+  margin: 0;
+  padding-bottom: 18px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.slab dl { margin: 0; }
+.slab .row { padding: 18px 0; border-top: 1px solid var(--line); }
+.slab dt { margin: 0 0 4px; font-size: 17px; font-weight: 600; letter-spacing: 0.06em; line-height: 1.4; color: var(--ink); }
+.slab dd { margin: 0; }
+
+/* A document (the privacy policy): the markdown in one slab. */
+.prose { max-width: 760px; margin: 44px auto 0; padding: 28px 30px 24px; }
+.prose h1 { margin: 0 0 18px; font-size: 22px; font-weight: 600; letter-spacing: 0.1em; line-height: 1.2; color: var(--ink); }
+.prose h2 {
+  margin: 24px 0 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.prose p { margin: 0 0 14px; }
+.prose ul { margin: 0 0 14px; padding-left: 1.4em; }
+.prose li { margin: 4px 0; }
+.prose strong { font-weight: 600; color: var(--ink); }
+.prose code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #cbc7be 0%, #dad6ce 100%);
+  box-shadow: inset 1px 2px 4px rgba(30, 25, 15, 0.3), inset -1px -1px 2px rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.prose hr {
+  border: 0;
+  height: 1px;
+  width: 70%;
+  margin: 36px auto;
+  background: linear-gradient(90deg, rgba(42, 39, 35, 0) 0%, var(--line) 50%, rgba(42, 39, 35, 0) 100%);
+}
+.prose hr + h1 { margin-top: 0; }
+
+/* The phone: side 20, reading 16 / 1.7, stone buttons 56 r16, the card's slab r22 on its deep shadow. */
+@media (max-width: 760px) {
+  body { font-size: 16px; line-height: 1.7; }
+  .page { padding: 56px 20px 48px; }
+  .masthead { gap: 16px; }
+  .masthead img { width: 64px; height: 64px; border-radius: 14px; }
+  .masthead .title { gap: 8px; }
+  .masthead .name { font-size: 28px; }
+  .masthead .tagline { font-size: 13px; }
+  .blocks { display: block; margin-top: 36px; }
+  .column { display: block; }
+  .column .slab { margin-top: 28px; }
+  .fold {
+    display: block;
+    border: 0;
+    height: 1px;
+    width: 70%;
+    margin: 36px auto;
+    background: linear-gradient(90deg, rgba(42, 39, 35, 0) 0%, var(--line) 50%, rgba(42, 39, 35, 0) 100%);
+  }
+  .store { margin-top: 22px; }
+  .store .url { font-size: 12px; }
+  .stone { height: 56px; padding: 0 26px; border-radius: 16px; font-size: 17px; }
+  .slab {
+    border-radius: 22px;
+    padding: 22px 20px 8px;
+    box-shadow:
+      14px 24px 48px rgba(30, 25, 15, 0.38),
+      4px 8px 14px rgba(0, 0, 0, 0.18),
+      inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+      inset -1px -1px 0 rgba(0, 0, 0, 0.07);
+  }
+  .slab h2 { padding-bottom: 14px; font-size: 20px; }
+  .slab .row { padding: 16px 0; }
+  .slab dt { font-size: 16px; }
+  .prose { margin-top: 36px; padding: 22px 20px 18px; }
+  .prose h1 { font-size: 20px; }
+  .prose h2 { font-size: 16px; }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .page { padding: 48px 40px 64px; }
+}

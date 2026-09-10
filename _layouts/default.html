@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#e3e0d9">
+    {% seo %}
+    <link rel="icon" href="{{ '/assets/icon.png' | relative_url }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ '/assets/icon.png' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="{{ '/assets/css/dawn.css' | relative_url }}">
+  </head>
+  <body>
+    <main class="page">
+      <header class="masthead">
+        <a class="icon" href="{{ '/' | relative_url }}"><img src="{{ '/assets/icon.png' | relative_url }}" alt="AuroraGo" width="88" height="88"></a>
+        <div class="title">
+          <a class="name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+          <div class="tagline">{{ site.description }}</div>
+        </div>
+      </header>
+      {{ content }}
+    </main>
+  </body>
+</html>
