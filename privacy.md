@@ -25,11 +25,6 @@ app 只把下面這些檔案寫在它自己的資料夾（Application Support/Au
 自選級位是一次買斷的 App 內購買。付款、收據、退款與家人共享全由 Apple 的 App Store 處理，app 只向 App Store
 查詢「這個 Apple 帳號是否已購買」。Apple 對這些資料的處理依 Apple 的隱私權政策：https://www.apple.com/legal/privacy/。
 
-## 解說的潤飾
-
-在支援 Apple Intelligence 的裝置上，app 用 Apple 的裝置端語言模型潤飾解說的文字。一切在裝置上完成，文字不會離開
-裝置；裝置不支援或未開啟 Apple Intelligence 時，app 用自己的解說原文。
-
 ## 沒有的東西
 
 沒有分析工具、沒有廣告、沒有追蹤、沒有第三方 SDK。app 不以兒童為對象，也不向任何人收集資料。
@@ -65,12 +60,6 @@ Rung choice (自選級位) is a one-time in-app purchase. Payment, receipts, ref
 handled entirely by Apple's App Store; the app only asks the App Store whether this Apple Account owns
 the purchase. Apple's handling of that data is governed by Apple's privacy policy:
 https://www.apple.com/legal/privacy/.
-
-## Polishing the explanations
-
-On devices that support Apple Intelligence, the app uses Apple's on-device language model to polish
-the explanation text. Everything happens on the device; the text never leaves it. Where Apple
-Intelligence is unavailable or turned off, the app shows its own explanation as written.
 
 ## What there is none of
 
