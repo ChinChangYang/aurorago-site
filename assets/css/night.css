@@ -1,0 +1,221 @@
+/* 夜 — AuroraGo's night theme (ADR 0019, the aurora ADR 0035): a fixed night sky with the app's own
+   curtain of light (assets/js/aurora.js, the app's Render/Aurora.swift ported), glass slabs over it,
+   金點 marking each row, 青圈 lighting what is under the pointer or the keyboard. The values are the
+   app's (Render/Theme.swift `Theme.night`, Render/Night/NightChrome.swift, Render/BoardPainter.swift):
+   the sky the paper #0a1020 ±HSL lightness, ink #e6e9f2 at .80 / .60 / .50, glass .07 with a .10 edge,
+   金 #e0b45c, 青 #6fe3c6, the lights rising in 150 ms and falling in 450. */
+
+:root {
+  --sky-top: #0c1428;
+  --sky-mid: #080c18;
+  --sky-bottom: #05080f;
+  --ink: #e6e9f2;
+  --body: rgba(230, 233, 242, 0.80);
+  --sub: rgba(230, 233, 242, 0.60);
+  --faint: rgba(230, 233, 242, 0.50);
+  --line: rgba(230, 233, 242, 0.10);
+  --glass: rgba(230, 233, 242, 0.07);
+  --gold: #e0b45c;
+  --gold-glow: rgba(224, 180, 92, 0.55);
+  --cyan: #6fe3c6;
+  --cyan-glow: rgba(111, 227, 198, 0.55);
+  --cyan-none: rgba(111, 227, 198, 0);
+  --sans: 'Noto Sans TC', 'PingFang TC', system-ui, sans-serif;
+  --serif: 'Noto Serif TC', 'Songti TC', Georgia, serif;
+  color-scheme: dark;
+}
+
+html { background: var(--sky-bottom); }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--body);
+  background: var(--sky-bottom);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+/* The sky: fixed to the window, the page scrolling over it (甲 固定天幕). */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-bottom) 100%);
+}
+.sky canvas { position: absolute; left: 0; top: 0; mix-blend-mode: screen; }
+/* No WebGL2: the curtain's still, rendered by aurora.js at second zero, screened onto the gradient. */
+.sky.still {
+  background-image: url('../img/aurora-wide.png'), linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-bottom) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% auto, auto;
+  background-blend-mode: screen, normal;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 40px 72px;
+  box-sizing: border-box;
+}
+
+a { color: var(--cyan); text-decoration: none; }
+
+/* 青圈: the ring of light round what the pointer or the keyboard is on — up in 150 ms, down in 450. */
+.stone, .slab a, .prose a, .masthead .icon {
+  outline: none;
+  box-shadow: 0 0 0 1.5px var(--cyan-none), 0 0 12px 2px var(--cyan-none);
+  transition: box-shadow 450ms ease-in-out;
+}
+.stone:hover, .stone:focus-visible, .masthead .icon:hover, .masthead .icon:focus-visible {
+  box-shadow: 0 0 0 1.5px var(--cyan), 0 0 12px 2px var(--cyan-glow);
+  transition-duration: 150ms;
+}
+/* In a line of text the ring stands clear of the words beside it and of the lines above and below. */
+.slab a, .prose a {
+  display: inline-block;
+  line-height: 1.35;
+  padding: 1px 7px;
+  margin: 0 5px;
+  border-radius: 999px;
+  overflow-wrap: anywhere;
+}
+.slab a:hover, .slab a:focus-visible, .prose a:hover, .prose a:focus-visible {
+  box-shadow: 0 0 0 1.5px var(--cyan), 0 0 8px rgba(111, 227, 198, 0.4);
+  transition-duration: 150ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stone, .slab a, .prose a, .masthead .icon { transition: none; }
+}
+
+/* The glass the app's pills and panels are made of, the sky blurred behind it. */
+.slab, .stone, .prose {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+/* The head: the icon and the name, high in the sky above the curtain. */
+.masthead { display: flex; align-items: center; gap: 22px; }
+.masthead .icon { display: block; flex: none; border-radius: 20px; }
+.masthead img { display: block; width: 88px; height: 88px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); }
+.masthead .title { display: flex; flex-direction: column; gap: 8px; }
+.masthead .name { font-family: var(--sans); font-size: 34px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.1; color: var(--ink); }
+.masthead .tagline { font-family: var(--sans); font-size: 16px; letter-spacing: 0.06em; line-height: 1.2; color: var(--sub); }
+
+/* The support page: two columns, the slabs on one row (subgrid) so they align; the curtain shows between
+   the head and the first words. */
+.blocks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  gap: 28px 40px;
+  margin-top: 148px;
+}
+.column { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 28px; }
+.blocks p { margin: 0; }
+.fold { display: none; }
+
+.store { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 22px; }
+.store .url { font-family: var(--sans); font-size: 13px; letter-spacing: 0.02em; line-height: 1.5; color: var(--faint); overflow-wrap: anywhere; }
+
+.stone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 30px;
+  border-radius: 28px;
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.stone:active { background: rgba(230, 233, 242, 0.14); }
+
+.slab { border-radius: 22px; padding: 30px 36px 14px; }
+.slab h2 { margin: 0 0 8px; font-family: var(--sans); font-size: 22px; font-weight: 600; letter-spacing: 0.1em; line-height: 1.2; color: var(--ink); }
+.slab dl { margin: 0; }
+.slab .row { padding: 16px 0; border-top: 1px solid var(--line); }
+.slab .row:first-child { border-top: 0; }
+.slab dt { display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.06em; line-height: 1.4; color: var(--ink); }
+.slab dd { margin: 4px 0 0 21px; }
+
+/* 金點: the gold light at the head of every row and every item. */
+.slab dt::before, .prose li::before {
+  content: '';
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 5px 3px var(--gold-glow);
+}
+
+/* A document (the privacy policy): the markdown in one slab of glass. */
+.prose { max-width: 820px; margin: 148px auto 0; padding: 40px 52px 36px; border-radius: 22px; box-sizing: border-box; }
+.prose h1 { margin: 0 0 18px; font-family: var(--sans); font-size: 26px; font-weight: 600; letter-spacing: 0.08em; line-height: 1.3; color: var(--ink); }
+.prose h2 { margin: 30px 0 8px; font-family: var(--sans); font-size: 20px; font-weight: 600; letter-spacing: 0.08em; line-height: 1.4; color: var(--ink); }
+.prose p { margin: 0 0 14px; }
+.prose ul { list-style: none; margin: 0 0 14px; padding: 0; }
+.prose li { position: relative; margin: 6px 0; padding-left: 24px; }
+.prose li::before { position: absolute; left: 2px; top: 0.72em; }
+.prose strong { font-weight: 600; color: var(--ink); }
+.prose code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.82em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(230, 233, 242, 0.08);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.prose hr {
+  border: 0;
+  height: 1px;
+  width: 70%;
+  margin: 40px auto;
+  background: linear-gradient(90deg, rgba(230, 233, 242, 0) 0%, rgba(230, 233, 242, 0.18) 50%, rgba(230, 233, 242, 0) 100%);
+}
+
+/* The phone: gutter 16, reading 16 / 1.7, the head lower and the curtain under it (aurora.js reads the
+   same 760). */
+@media (max-width: 760px) {
+  body { font-size: 16px; line-height: 1.7; }
+  .sky.still { background-image: url('../img/aurora-narrow.png'), linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-bottom) 100%); }
+  .page { padding: 36px 16px 56px; }
+  .masthead { gap: 16px; padding: 0 4px; }
+  .masthead .icon, .masthead img { border-radius: 15px; }
+  .masthead img { width: 64px; height: 64px; }
+  .masthead .title { gap: 4px; }
+  .masthead .name { font-size: 26px; }
+  .masthead .tagline { font-size: 14px; }
+  .blocks { display: block; margin-top: 110px; }
+  .column { display: block; }
+  .intro { padding: 0 4px; }
+  .column .slab { margin-top: 22px; }
+  .fold { display: block; border: 0; height: 1px; margin: 36px 4px; background: var(--line); }
+  .store { align-items: stretch; margin-top: 18px; }
+  .store .url { font-size: 12px; text-align: center; }
+  .stone { height: 52px; border-radius: 26px; font-size: 16px; }
+  .slab { border-radius: 20px; padding: 22px 18px 8px; }
+  .slab h2 { margin-bottom: 4px; font-size: 20px; }
+  .slab .row { padding: 14px 0; }
+  .slab dt { gap: 11px; font-size: 16px; }
+  .slab dd { margin: 3px 0 0 20px; }
+  .slab a, .prose a { margin: 0 4px; }
+  .prose { margin-top: 110px; padding: 24px 18px 18px; border-radius: 20px; }
+  .prose h1 { font-size: 22px; }
+  .prose h2 { font-size: 18px; }
+}

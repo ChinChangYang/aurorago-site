@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#e3e0d9">
+    <meta name="theme-color" content="#0c1428">
     {% seo %}
     <link rel="icon" href="{{ '/assets/icon.png' | relative_url }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ '/assets/icon.png' | relative_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap">
-    <link rel="stylesheet" href="{{ '/assets/css/dawn.css' | relative_url }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="{{ '/assets/css/night.css' | relative_url }}">
   </head>
   <body>
+    <div class="sky" aria-hidden="true"><canvas></canvas><canvas></canvas></div>
     <main class="page">
       <header class="masthead">
         <a class="icon" href="{{ '/' | relative_url }}"><img src="{{ '/assets/icon.png' | relative_url }}" alt="AuroraGo" width="88" height="88"></a>
@@ -23,5 +24,17 @@
       </header>
       {{ content }}
     </main>
+    <script src="{{ '/assets/js/aurora.js' | relative_url }}"></script>
+    <script>
+      (function () {
+        var c = document.querySelectorAll('.sky canvas');
+        if (!window.AuroraSky) return;
+        // The curtain's lower border under the head, the rays reaching up behind it (the phone below 760, as night.css).
+        // Without WebGL2 the sky wears the curtain's still (second zero, rendered from the same code).
+        AuroraSky.attach({ stars: c[0], aurora: c[1], shape: function () {
+          return window.innerWidth <= 760 ? { border: 170, rayLength: 64, starEnd: 380 } : { border: 250, rayLength: 100, starEnd: 560 };
+        }, fallback: function () { c[0].parentElement.classList.add('still'); } });
+      })();
+    </script>
   </body>
 </html>
