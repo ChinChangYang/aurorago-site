@@ -5,9 +5,9 @@ permalink: /privacy/
 
 # AuroraGo 隱私政策
 
-生效日：2026-09-06
+生效日：2026-10-07
 
-**AuroraGo 不收集任何資料。** 沒有帳號、沒有伺服器；app 本身不發出任何網路請求。
+**AuroraGo 不收集任何資料。** 沒有帳號、沒有伺服器；app 只經 Apple 的 App Store 與遊戲中心連網，不連到任何我們的伺服器。
 
 ## 存在你裝置上的東西
 
@@ -15,6 +15,7 @@ app 只把下面這些檔案寫在它自己的資料夾（Application Support/Au
 （iCloud 備份或電腦備份）會有它們，我們讀不到：
 
 - 級位進度（`progress.json`）與外觀設定（`appearance.json`）；
+- 證書（`certificates.json`）：每張證書發出的日子，與你寫在證書上的名字；
 - 每一盤的棋譜與引擎分析（`record.json`、`record.sgf`、`analysis.json`），包括解說的文字；
 - 引擎的診斷記錄（`engine.log`），只有執行時間與溫度狀態這類數字。
 
@@ -24,6 +25,12 @@ app 只把下面這些檔案寫在它自己的資料夾（Application Support/Au
 
 自選級位是一次買斷的 App 內購買。付款、收據、退款與家人共享全由 Apple 的 App Store 處理，app 只向 App Store
 查詢「這個 Apple 帳號是否已購買」。Apple 對這些資料的處理依 Apple 的隱私權政策：https://www.apple.com/legal/privacy/。
+
+## 遊戲中心
+
+你若在裝置上登入了遊戲中心，app 會把取得的證書回報為遊戲中心成就，並在第一次詢問證書名字時預先填入你的遊戲中心
+名字——寫不寫、寫什麼由你決定，存在上面的 `certificates.json`。成就由 Apple 的遊戲中心處理，依 Apple 的隱私權政策：
+https://www.apple.com/legal/privacy/。我們讀不到它們。不登入也照樣取得證書與寫上名字。
 
 ## 沒有的東西
 
@@ -37,10 +44,10 @@ app 只把下面這些檔案寫在它自己的資料夾（Application Support/Au
 
 # AuroraGo Privacy Policy
 
-Effective: 2026-09-06
+Effective: 2026-10-07
 
-**AuroraGo collects no data.** There is no account and no server; the app itself makes no network
-requests.
+**AuroraGo collects no data.** There is no account and no server; the app goes online only through
+Apple's App Store and Game Center, never to a server of ours.
 
 ## What stays on your device
 
@@ -48,6 +55,7 @@ The app writes only these files, in its own folder (Application Support/AuroraGo
 its system backups (iCloud Backup or a computer backup) have them; we cannot read them:
 
 - your ladder progress (`progress.json`) and appearance settings (`appearance.json`);
+- your certificates (`certificates.json`): the day each was issued and the name you wrote on them;
 - each game's record and engine analysis (`record.json`, `record.sgf`, `analysis.json`), including the
   explanation text;
 - the engine's diagnostic log (`engine.log`): timings and thermal state, nothing else.
@@ -60,6 +68,14 @@ Rung choice (自選級位) is a one-time in-app purchase. Payment, receipts, ref
 handled entirely by Apple's App Store; the app only asks the App Store whether this Apple Account owns
 the purchase. Apple's handling of that data is governed by Apple's privacy policy:
 https://www.apple.com/legal/privacy/.
+
+## Game Center
+
+If you are signed in to Game Center on the device, the app reports the certificates you earn as Game
+Center achievements, and fills in your Game Center name the first time it asks for the name to write on
+your certificates — whether and what to write is yours, kept in `certificates.json` above. Achievements
+are handled by Apple's Game Center under Apple's privacy policy: https://www.apple.com/legal/privacy/.
+We cannot read them. Without Game Center you earn the certificates and write your name all the same.
 
 ## What there is none of
 
