@@ -3,11 +3,11 @@ title: 隱私政策 · Privacy Policy
 permalink: /privacy/
 ---
 
-# AuroraGo 隱私政策
+# 極光圍棋隱私政策
 
 生效日：2026-10-07
 
-**AuroraGo 不收集任何資料。** 沒有帳號、沒有伺服器；app 只經 Apple 的 App Store 與遊戲中心連網，不連到任何我們的伺服器。
+**極光圍棋不收集任何資料。** 沒有帳號、沒有伺服器；app 只經 Apple 的 App Store 與 Game Center 連網，不連到任何我們的伺服器。
 
 ## 存在你裝置上的東西
 
@@ -26,10 +26,10 @@ app 只把下面這些檔案寫在它自己的資料夾（Application Support/Au
 自選級位是一次買斷的 App 內購買。付款、收據、退款與家人共享全由 Apple 的 App Store 處理，app 只向 App Store
 查詢「這個 Apple 帳號是否已購買」。Apple 對這些資料的處理依 Apple 的隱私權政策：https://www.apple.com/legal/privacy/。
 
-## 遊戲中心
+## Game Center
 
-你若在裝置上登入了遊戲中心，app 會把取得的證書回報為遊戲中心成就，並在第一次詢問證書名字時預先填入你的遊戲中心
-名字——寫不寫、寫什麼由你決定，存在上面的 `certificates.json`。成就由 Apple 的遊戲中心處理，依 Apple 的隱私權政策：
+你若在裝置上登入了 Game Center，app 會把取得的證書回報為 Game Center 成就，並在第一次詢問證書名字時預先填入你的 Game Center
+名字——寫不寫、寫什麼由你決定，存在上面的 `certificates.json`。成就由 Apple 的 Game Center 處理，依 Apple 的隱私權政策：
 https://www.apple.com/legal/privacy/。我們讀不到它們。不登入也照樣取得證書與寫上名字。
 
 ## 沒有的東西
