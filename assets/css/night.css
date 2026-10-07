@@ -69,7 +69,7 @@ body {
 a { color: var(--cyan); text-decoration: none; }
 
 /* 青圈: the ring of light round what the pointer or the keyboard is on — up in 150 ms, down in 450. */
-.stone, .slab a, .prose a, .masthead .icon {
+.stone, .slab a, .prose a, .masthead .icon, .sitenav a {
   outline: none;
   box-shadow: 0 0 0 1.5px var(--cyan-none), 0 0 12px 2px var(--cyan-none);
   transition: box-shadow 450ms ease-in-out;
@@ -92,7 +92,16 @@ a { color: var(--cyan); text-decoration: none; }
   transition-duration: 150ms;
 }
 @media (prefers-reduced-motion: reduce) {
-  .stone, .slab a, .prose a, .masthead .icon { transition: none; }
+  .stone, .slab a, .prose a, .masthead .icon, .sitenav a { transition: none; }
+}
+
+/* The site's three pages — 介紹, 支援, 隱私政策 — at the head's right, the page one is on in ink. */
+.sitenav { display: flex; flex-wrap: wrap; gap: 4px; margin-left: auto; font-family: var(--sans); font-size: 15px; letter-spacing: 0.08em; line-height: 1.2; }
+.sitenav a { padding: 10px 14px; border-radius: 999px; }
+.sitenav a[aria-current="page"] { color: var(--ink); }
+.sitenav a:hover, .sitenav a:focus-visible {
+  box-shadow: 0 0 0 1.5px var(--cyan), 0 0 8px rgba(111, 227, 198, 0.4);
+  transition-duration: 150ms;
 }
 
 /* The glass the app's pills and panels are made of, the sky blurred behind it. */
@@ -195,7 +204,8 @@ a { color: var(--cyan); text-decoration: none; }
   body { font-size: 16px; line-height: 1.7; }
   .sky.still { background-image: url('../img/aurora-narrow.png'), linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-bottom) 100%); }
   .page { padding: 36px 16px 56px; }
-  .masthead { gap: 16px; padding: 0 4px; }
+  .masthead { flex-wrap: wrap; gap: 16px; padding: 0 4px; }
+  .masthead .sitenav { flex-basis: 100%; margin: -4px 0 0 -14px; font-size: 14px; }
   .masthead .icon, .masthead img { border-radius: 15px; }
   .masthead img { width: 64px; height: 64px; }
   .masthead .title { gap: 4px; }

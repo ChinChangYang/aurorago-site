@@ -1,0 +1,5 @@
+<nav class="sitenav" aria-label="網站">
+  <a href="{{ '/promo/' | relative_url }}"{% if page.url == '/promo/' %} aria-current="page"{% endif %}>介紹</a>
+  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>支援</a>
+  <a href="{{ '/privacy/' | relative_url }}"{% if page.url == '/privacy/' %} aria-current="page"{% endif %}>隱私政策</a>
+</nav>

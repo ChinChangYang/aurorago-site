@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+  <head>
+{% include head.html %}
+    <link rel="stylesheet" href="{{ '/assets/css/promo.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true"><canvas></canvas><canvas></canvas></div>
+    <main class="page promo">
+      <header class="masthead">
+        <a class="icon" href="{{ '/promo/' | relative_url }}"><img src="{{ '/assets/icon.png' | relative_url }}" alt="AuroraGo" width="88" height="88"></a>
+        <div class="title">
+          <a class="name" href="{{ '/promo/' | relative_url }}">{{ site.title }}</a>
+          <div class="tagline">{{ site.description }}</div>
+        </div>
+        {% include sitenav.html %}
+      </header>
+      {{ content }}
+      <footer class="foot">
+        <span>© 2026 Chin-Chang Yang</span>
+        {% include sitenav.html %}
+      </footer>
+    </main>
+{% include sky.html %}
+  </body>
+</html>
