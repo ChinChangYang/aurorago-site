@@ -56,8 +56,10 @@
 .pair .phone { width: 47%; max-width: 250px; }
 .pair .low { margin-top: 56px; }
 .tablet { display: block; width: 100%; height: auto; border-radius: 22px; border: 1px solid rgba(230, 233, 242, 0.14); box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55); }
-.themes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-.themes .phone { max-width: none; border-radius: 24px; }
+/* The five themes in a row; narrower, three over two, the short row centred. A phone's share counts its border, and
+   is a pixel short of it, or rounding wraps the row. */
+.themes { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+.themes .phone { box-sizing: border-box; width: calc((100% - 4 * 18px) / 5 - 1px); max-width: none; border-radius: 24px; }
 
 /* The ladder's three figures. */
 .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 4px 0; }
@@ -118,7 +120,7 @@
 .foot .sitenav { margin-left: 0; margin-right: -14px; }
 
 @media (max-width: 900px) {
-  .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .themes .phone { width: calc((100% - 2 * 18px) / 3 - 1px); }
 }
 
 @media (max-width: 760px) {
@@ -135,7 +137,7 @@
   .figures .slab { display: flex; align-items: baseline; gap: 16px; padding: 10px 18px; }
   .figures dt { flex: none; width: 1.6em; font-size: 28px; }
   .themes { gap: 12px; }
-  .themes .phone { border-radius: 16px; }
+  .themes .phone { width: calc((100% - 2 * 12px) / 3 - 1px); border-radius: 16px; }
   .scrolls { padding: 28px 10px 0; gap: 8px; }
   .scrolls figcaption { font-size: 12px; letter-spacing: 0.04em; }
   .specs { padding: 24px 20px; }
