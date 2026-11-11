@@ -56,10 +56,10 @@
 .pair .phone { width: 47%; max-width: 250px; }
 .pair .low { margin-top: 56px; }
 .tablet { display: block; width: 100%; height: auto; border-radius: 22px; border: 1px solid rgba(230, 233, 242, 0.14); box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55); }
-/* The five themes in a row; narrower, three over two, the short row centred. A phone's share counts its border, and
+/* The five themes and the widget in a row; narrower, three over three. A phone's share counts its border, and
    is a pixel short of it, or rounding wraps the row. */
 .themes { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
-.themes .phone { box-sizing: border-box; width: calc((100% - 4 * 18px) / 5 - 1px); max-width: none; border-radius: 24px; }
+.themes .phone { box-sizing: border-box; width: calc((100% - 5 * 18px) / 6 - 1px); max-width: none; border-radius: 24px; }
 
 /* The ladder's three figures. */
 .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 4px 0; }
@@ -96,6 +96,7 @@
 .specs h2 { flex: 1 1 160px; margin: 0; font-family: var(--sans); font-size: 24px; font-weight: 600; letter-spacing: 0.1em; line-height: 1.6; }
 .specs .dots { flex: 999 1 480px; }
 .speak { padding: 18px 22px; border-radius: 16px; display: flex; flex-direction: column; gap: 10px; }
+.speak p { margin: 0; color: var(--body); }
 .speak h3 { margin: 0; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink); }
 .speak ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 8px; color: var(--body); }
 .speak li::marker { color: var(--gold); font-family: var(--sans); }
