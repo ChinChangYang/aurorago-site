@@ -77,6 +77,32 @@
 .scrolls figcaption { padding-bottom: 22px; font-family: var(--sans); font-size: 14px; letter-spacing: 0.1em; color: var(--sub); }
 .scrolls .crown figcaption { color: var(--gold); }
 
+/* 棋力對照: the ladder as the rung panel lists it, top the strongest; an IGQE grade hangs on the rung it is
+   estimated to match (AuroraGo #473). Columns: the grade, the wire, the rail and the rung. */
+.fine { font-family: var(--sans); font-size: 13px; line-height: 1.75; color: var(--faint); max-width: 40em; }
+.strength { flex: 1 1 340px; max-width: 470px; box-sizing: border-box; padding: 26px clamp(16px, 4vw, 34px) 22px; border-radius: 24px; font-family: var(--sans); font-size: 14px; font-variant-numeric: tabular-nums; }
+.strength .heads, .strength li { display: grid; grid-template-columns: 60px minmax(16px, 1fr) 84px; }
+.strength .heads { margin: 0 0 12px; font-size: 12px; letter-spacing: 0.14em; line-height: 1.4; color: var(--sub); white-space: nowrap; }
+.strength .heads span:first-child { text-align: right; }
+.strength .heads span:last-child { grid-column: 3; color: var(--gold); }
+.strength ol { list-style: none; margin: 0; padding: 0; }
+.strength li { position: relative; height: 30px; align-items: center; }
+.strength .g { grid-column: 1; justify-self: end; }
+.strength .hit .g { padding: 2px 9px; border-radius: 999px; border: 1px solid rgba(230, 233, 242, 0.28); background: rgba(230, 233, 242, 0.06); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; line-height: 1.4; color: var(--ink); }
+.strength .hit::after { content: ''; position: absolute; left: 66px; right: 80px; top: 50%; height: 1px; background: linear-gradient(90deg, rgba(230, 233, 242, 0.45), var(--cyan) 60%, var(--gold)); box-shadow: 0 0 6px var(--cyan-glow); }
+.strength .r { grid-column: 3; align-self: stretch; position: relative; display: flex; align-items: center; padding-left: 24px; white-space: nowrap; color: rgba(230, 233, 242, 0.32); }
+.strength .r em { font-style: normal; font-family: var(--serif); font-size: 17px; margin-right: 3px; }
+.strength .r::after, .strength .gap::after { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: rgba(230, 233, 242, 0.12); }
+.strength li:first-child .r::after { top: 50%; }
+.strength .r::before { content: ''; position: absolute; z-index: 1; left: 7.5px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid rgba(230, 233, 242, 0.32); background: var(--sky-bottom); }
+.strength .hit .r { color: var(--gold); font-weight: 600; }
+.strength .hit .r::before { left: 4.5px; width: 13px; height: 13px; margin-top: -6.5px; border: 0; background: radial-gradient(circle at 35% 30%, #f6dca2, var(--gold) 55%, #a87a2c); box-shadow: 0 0 8px 2px var(--gold-glow); }
+.strength .gap { height: 14px; }
+.strength .gap::after { left: auto; right: 72px; }
+.strength .tail .r { font-size: 13px; }
+.strength .tail .r::before { content: none; }
+.strength .tail .r::after { bottom: 4px; background: repeating-linear-gradient(180deg, rgba(230, 233, 242, 0.22) 0 3px, transparent 3px 7px); }
+
 /* 金點 lists. */
 .dots { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .dots li { position: relative; padding-left: 24px; color: var(--body); }
